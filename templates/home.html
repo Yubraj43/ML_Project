@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Student Math Score</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: royalblue;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        select, input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: royalblue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+    </style>
+    <style>
+        form {
+            max-width: 400px;
+            margin: auto;
+            color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Exam Performance Indicator</h1>
+
+    <form action="{{ url_for('predict_datapoint') }}" method="post">
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <br><br>
+
+        <label for="race_ethnicity">Race or Ethnicity</label>
+        <select id="race_ethnicity" name="race_ethnicity" required>
+            <option value="group A">Group A</option>
+            <option value="group B">Group B</option>
+            <option value="group C">Group C</option>
+            <option value="group D">Group D</option>
+            <option value="group E">Group E</option>
+        </select>
+        <br><br>
+
+        <label for="parental_level_of_education">Parental Level of Education</label>
+        <select id="parental_level_of_education" name="parental_level_of_education" required>
+            <option value="associate's degree">Associate's degree</option>
+            <option value="bachelor's degree">Bachelor's degree</option>
+            <option value="high school">High school</option>
+            <option value="master's degree">Master's degree</option>
+            <option value="some college">Some college</option>
+            <option value="some high school">Some high school</option>
+        </select>
+        <br><br>
+
+        <label for="lunch">Lunch</label>
+        <select id="lunch" name="lunch" required>
+            <option value="standard">Standard</option>
+            <option value="free/reduced">Free/reduced</option>
+        </select>
+        <br><br>
+
+        <label for="test_preparation_course">Test Preparation Course</label>
+        <select id="test_preparation_course" name="test_preparation_course" required>
+            <option value="none">None</option>
+            <option value="completed">Completed</option>
+        </select>
+        <br><br>
+
+        <label for="reading_score">Reading Score out of 100</label>
+        <input id="reading_score" type="number" name="reading_score" min="0" max="100" required>
+        <br><br>
+
+        <label for="writing_score">Writing Score out of 100</label>
+        <input id="writing_score" type="number" name="writing_score" min="0" max="100" required>
+        <br><br>
+
+        <button type="submit">Predict your Math Score</button>
+    </form>
+
+    <h2>The prediction is {{ results }}</h2>
+</body>
+</html>
